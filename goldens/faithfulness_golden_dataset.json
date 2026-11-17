@@ -1,0 +1,268 @@
+[
+  {
+    "id": "f001",
+    "query": "What problem does GraphRAG address that conventional vector-based RAG may miss?",
+    "ideal_context": [
+      "Conventional RAG retrieves passages using semantic similarity. This can miss broader relationships, hierarchies, and implicit logic connecting concepts across documents.",
+      "GraphRAG represents entities, events, or themes as graph nodes and their logical, causal, or associative connections as edges. It can traverse connected subgraphs to support multi-step reasoning and synthesis."
+    ],
+    "source_sessions": [
+      "02_GRAPH RAG(1).pdf | Introduction / RAG vs GraphRAG"
+    ]
+  },
+  {
+    "id": "f002",
+    "query": "Which four task categories does GraphRAG-Bench use to evaluate increasing retrieval and reasoning difficulty?",
+    "ideal_context": [
+      "GraphRAG-Bench covers four task categories: fact retrieval, multi-hop reasoning, contextual summarization, and creative generation.",
+      "The benchmark uses lower-level tasks to test retrieval capability and higher-level tasks to assess reasoning depth and contextual comprehension."
+    ],
+    "source_sessions": [
+      "02_GRAPH RAG(1).pdf | GraphRAG-Bench, Task Formulation"
+    ]
+  },
+  {
+    "id": "f003",
+    "query": "Why are ordinary multi-hop QA benchmarks insufficient for evaluating GraphRAG?",
+    "ideal_context": [
+      "Existing benchmarks often emphasize retrieval difficulty—finding scattered facts—and neglect reasoning difficulty: integrating interconnected concepts and capturing latent logic.",
+      "A question that asks for two separate facts linked across documents may be called multi-hop, but it does not necessarily test complex logical synthesis or contextual understanding."
+    ],
+    "source_sessions": [
+      "02_GRAPH RAG(1).pdf | Introduction"
+    ]
+  },
+  {
+    "id": "f004",
+    "query": "What stages should be evaluated when assessing a GraphRAG system, according to GraphRAG-Bench?",
+    "ideal_context": [
+      "A holistic evaluation should inspect graph construction efficiency and graph quality, the structure and relevance of graph-retrieved knowledge, and the faithfulness of the final answer to graph-derived context.",
+      "GraphRAG-Bench evaluates the pipeline from indexing and graph construction through knowledge retrieval to final generation."
+    ],
+    "source_sessions": [
+      "02_GRAPH RAG(1).pdf | Benchmark evaluation framework"
+    ]
+  },
+  {
+    "id": "f005",
+    "query": "What is the main idea behind Knowledge-Aware Retrieval (KAR) query expansion?",
+    "ideal_context": [
+      "KAR augments an original query with structured document relations from a knowledge graph. It uses document text as rich representations of graph nodes and filters relations according to the query.",
+      "The approach aims to preserve both textual intent and structural relationships when generating query expansions."
+    ],
+    "source_sessions": [
+      "03_query expansion, contextual retrieval(1).pdf | Abstract / Method"
+    ]
+  },
+  {
+    "id": "f006",
+    "query": "Why can ordinary LLM query expansion produce incorrect results for queries with relational constraints?",
+    "ideal_context": [
+      "Traditional query expansion methods mainly improve textual or semantic similarity and can overlook document relations.",
+      "For a query asking for a wildlife camera compatible with Nikon F-Mount lenses, an expansion may suggest a semantically related camera while inventing an unsupported compatibility relation."
+    ],
+    "source_sessions": [
+      "03_query expansion, contextual retrieval(1).pdf | Abstract / Figure 1 discussion"
+    ]
+  },
+  {
+    "id": "f007",
+    "query": "How does KAR construct query-focused document relations?",
+    "ideal_context": [
+      "KAR extracts entities explicitly mentioned in the original query, retrieves their associated documents and neighboring knowledge-graph nodes, and filters relations using the relevance of neighbor document texts to the query.",
+      "It constructs document-based triples in the form of source document, relation, and neighboring document, retaining textual details as well as graph relations."
+    ],
+    "source_sessions": [
+      "03_query expansion, contextual retrieval(1).pdf | Method"
+    ]
+  },
+  {
+    "id": "f008",
+    "query": "What limitation of KAR is identified by its authors?",
+    "ideal_context": [
+      "KAR, like other LLM-based query expansion methods, has retrieval-efficiency limitations.",
+      "The framework is designed to use two LLM inferences per search query, but API latency and server load can still affect response time."
+    ],
+    "source_sessions": [
+      "03_query expansion, contextual retrieval(1).pdf | Limitations"
+    ]
+  },
+  {
+    "id": "f009",
+    "query": "What are the four query-complexity tiers in the Adaptive Query Routing paper?",
+    "ideal_context": [
+      "Tier 1 is single-fact lookup and is routed to vector similarity search.",
+      "Tier 2 is multi-section reasoning and uses tree navigation.",
+      "Tier 3 is cross-reference reasoning and uses hierarchical traversal.",
+      "Tier 4 is multi-document synthesis and uses hybrid fusion."
+    ],
+    "source_sessions": [
+      "04.pdf | Four-Tier Query Complexity Benchmark, Table 1"
+    ]
+  },
+  {
+    "id": "f010",
+    "query": "Which retrieval configuration achieved the highest overall quality in the controlled corpus experiment?",
+    "ideal_context": [
+      "Across 22 queries in three domains, Tree Reasoning achieved the highest overall quality score of 0.900.",
+      "Hybrid AHR and Vector RAG both achieved 0.845. Vector RAG had the lowest mean latency at 1.61 seconds, compared with 3.40 seconds for Tree Reasoning."
+    ],
+    "source_sessions": [
+      "04.pdf | Experimental Results, Table 2"
+    ]
+  },
+  {
+    "id": "f011",
+    "query": "Did one retrieval method dominate every query-complexity tier in the Adaptive Query Routing study?",
+    "ideal_context": [
+      "No single method dominated every tier. Tree Reasoning led on Tier 1, all three methods tied on Tier 2, Hybrid AHR led on Tier 3, and Vector RAG scored highest on Tier 4.",
+      "The Tier 4 result is based on a single multi-document query, so it should be interpreted cautiously."
+    ],
+    "source_sessions": [
+      "04.pdf | Performance by Query Complexity Tier"
+    ]
+  },
+  {
+    "id": "f012",
+    "query": "What caveat do the authors give about interpreting the Adaptive Hybrid Retrieval results?",
+    "ideal_context": [
+      "The configurations differed in document access, generation prompts, and output-length limits, so performance differences cannot be attributed solely to retrieval architecture.",
+      "The paper describes the results as preliminary and says the adaptive router did not outperform fixed Tree Reasoning overall in the controlled experiment."
+    ],
+    "source_sessions": [
+      "04.pdf | Abstract / Experimental Results"
+    ]
+  },
+  {
+    "id": "f013",
+    "query": "What is candidate-aware retrieval in the multiple-choice QA paper?",
+    "ideal_context": [
+      "Candidate-aware retrieval and reranking score evidence using the question, an individual answer candidate, and a candidate passage, represented as a question-answer-context triplet.",
+      "Unlike question-only retrieval, it models how each answer option interacts with a passage and prioritizes evidence that supports or refutes that candidate."
+    ],
+    "source_sessions": [
+      "05_Retrieval and Reranking.(1).pdf | Abstract / Contributions"
+    ]
+  },
+  {
+    "id": "f014",
+    "query": "Why can retrieving more passages hurt multiple-choice question answering?",
+    "ideal_context": [
+      "Retrieving too many passages can introduce noise. Even when relevant content is retrieved, the model may struggle with partially relevant or conflicting information.",
+      "The paper motivates targeted evidence selection and reranking to prioritize passages that discriminate between answer candidates."
+    ],
+    "source_sessions": [
+      "05_Retrieval and Reranking.(1).pdf | Abstract / Introduction"
+    ]
+  },
+  {
+    "id": "f015",
+    "query": "What three relevance levels are used to supervise the candidate-aware reranker?",
+    "ideal_context": [
+      "The reranker uses three ordered relevance labels: 0 for negative context, 0.7 for partially positive context, and 1 for positive context.",
+      "The paper treats these labels as ordinal relevance targets rather than independent classes."
+    ],
+    "source_sessions": [
+      "05_Retrieval and Reranking.(1).pdf | Reranker training"
+    ]
+  },
+  {
+    "id": "f016",
+    "query": "Which loss functions are combined to train the candidate-aware reranker?",
+    "ideal_context": [
+      "The reranker is trained using a regression loss and a triplet loss.",
+      "The regression loss uses mean squared error between predicted relevance and the soft target. The triplet loss encourages an anchor embedding to be closer to a positive example than to a negative example by a margin."
+    ],
+    "source_sessions": [
+      "05_Retrieval and Reranking.(1).pdf | Training objective"
+    ]
+  },
+  {
+    "id": "f017",
+    "query": "What are the main stages of the hybrid retrieval and reranking framework for evidence-grounded RAG?",
+    "ideal_context": [
+      "The framework ingests and parses source PDFs, creates embeddings and indexes document chunks, retrieves candidate evidence using hybrid retrieval, reranks the candidates, and generates answers from the highest-ranked evidence.",
+      "A separate judge model decomposes generated answers into factual claims and checks whether each claim is supported by retrieved evidence."
+    ],
+    "source_sessions": [
+      "08(1).pdf | Abstract / Methodology"
+    ]
+  },
+  {
+    "id": "f018",
+    "query": "Why does the hybrid retrieval framework use both lexical and semantic retrieval?",
+    "ideal_context": [
+      "Lexical retrieval can capture exact keyword matches, while semantic retrieval can identify conceptually related passages even when the wording differs.",
+      "Combining lexical and vector-based signals can increase the likelihood that retrieved evidence contains both exact terminology and semantically relevant information."
+    ],
+    "source_sessions": [
+      "08(1).pdf | Introduction"
+    ]
+  },
+  {
+    "id": "f019",
+    "query": "What did reranking change in the 25-query hybrid retrieval experiment?",
+    "ideal_context": [
+      "The system retrieved 20 candidate evidence chunks per query, producing 500 chunks across 25 queries, and used the top five reranked chunks for answer generation.",
+      "Only 44 of the 500 chunks retained the same rank after reranking, or 8.8%. The final top-ranked chunks had a mean original retrieval rank of 6.0."
+    ],
+    "source_sessions": [
+      "08(1).pdf | Results"
+    ]
+  },
+  {
+    "id": "f020",
+    "query": "How should the reported 100% grounding accuracy in the hybrid retrieval paper be interpreted?",
+    "ideal_context": [
+      "The study extracted 200 factual claims from 25 generated answers, and the judge marked all 200 claims as supported by retrieved evidence.",
+      "The authors clarify that this is internal grounding accuracy, not strict citation accuracy, because generated answers did not include explicit source labels for each claim."
+    ],
+    "source_sessions": [
+      "08(1).pdf | Results / Conclusion"
+    ]
+  },
+  {
+    "id": "f021",
+    "query": "What four RAG paradigms are compared in the paper Is GraphRAG Needed?",
+    "ideal_context": [
+      "The paper presents a framework comparing Regular RAG, GraphRAG, Modular RAG, and Agentic RAG.",
+      "Its standardized scenarios range from document-based retrieval to hybrid text-graph retrieval, domain-knowledge-graph integration, agentic multi-step planning, and agent-graph integration."
+    ],
+    "source_sessions": [
+      "07(1).pdf | Abstract / Introduction"
+    ]
+  },
+  {
+    "id": "f022",
+    "query": "What context-optimization benefit does Is GraphRAG Needed report?",
+    "ideal_context": [
+      "The paper reports context or token reductions between 19% and 53% across selected GraphRAG and Agentic RAG scenarios.",
+      "For Scenario 5, context optimization achieved a 53% token reduction with comparable performance at baseline parameters. Other scenarios reported reductions such as 19%, 24%, and 42% under their respective configurations."
+    ],
+    "source_sessions": [
+      "07(1).pdf | Abstract / Context Optimization"
+    ]
+  },
+  {
+    "id": "f023",
+    "query": "What is the retrieval-generation gap identified in Is GraphRAG Needed?",
+    "ideal_context": [
+      "Expanded retrieval can increase coverage of ground-truth entities without a proportional improvement in the LLM's ability to use those entities during answer generation.",
+      "In one analysis, retrieval coverage reached 83.5%, while LLM extraction of answer entities was 47.9%. The authors argue that retrieval coverage and generation utilization should be evaluated separately."
+    ],
+    "source_sessions": [
+      "07(1).pdf | Retrieval-Generation Gap analysis"
+    ]
+  },
+  {
+    "id": "f024",
+    "query": "When is GraphRAG more useful than basic RAG, according to the uploaded GraphRAG papers?",
+    "ideal_context": [
+      "Basic RAG is effective for rapid retrieval of discrete facts that can be answered from a small number of passages.",
+      "GraphRAG is more useful when questions require connecting concepts, hierarchies, indirect dependencies, multi-hop reasoning, contextual summarization, or synthesis across dispersed evidence. Graph-based retrieval can also introduce redundant or noisy context for simpler questions."
+    ],
+    "source_sessions": [
+      "02_GRAPH RAG(1).pdf | RAG vs GraphRAG; 07(1).pdf | Findings"
+    ]
+  }
+]

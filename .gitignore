@@ -1,0 +1,72 @@
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+venv/
+env/
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+.DS_Store
+
+# =========================
+# ChromaDB
+# =========================
+chroma_db/
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+
+# =========================
+# Downloaded model/cache files
+# =========================
+.cache/
+huggingface_cache/
+models/
+
+# =========================
+# Streamlit
+# =========================
+.streamlit/secrets.toml
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.temp
+*.bak
+
+# =========================
+# Evaluation outputs
+# =========================
+deepeval_results/
+.confident/
