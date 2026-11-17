@@ -53,7 +53,7 @@ ResearchIQ addresses this limitation by combining document processing, image-des
 ### 6. Question Answering
 - Uses LangChain prompt templates and chains.
 - Uses Groq as the LLM provider.
-- Model: `llama-3.3-70b-versatile`.
+- Model: 'openai/gpt-oss-20b'.
 - Generates answers using retrieved context.
 - Supports questions about both textual content and extracted image descriptions.
 - Includes source and page citations in answers.
@@ -77,7 +77,7 @@ ResearchIQ addresses this limitation by combining document processing, image-des
 | Embedding Model | BAAI/bge-small-en-v1.5 |
 | Vector Database | ChromaDB |
 | LLM Provider | Groq |
-| LLM | Llama 3.3 70B Versatile |
+| LLM | "openai/gpt-oss-20b" |
 | User Interface | Streamlit |
 | Package Management | uv |
 
